@@ -1,6 +1,6 @@
-name: GitHub Actions Demo
+name: Build for Azure App Service
 
-run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+run-name: build triggered by ${{ github.actor }}
 
 on:
   push:
@@ -20,7 +20,8 @@ jobs:
         with:
           python-version: '3.11'
 
-      - run: |
+      - name: Setup venv
+        run: |
           python -V
           python -m venv --copies antenv
           source ./antenv/bin/activate
@@ -34,4 +35,5 @@ jobs:
       - name: Upload artifact for deployment
         uses: actions/upload-artifact@v3
         with:
+          name: python-app
           path: release.zip
