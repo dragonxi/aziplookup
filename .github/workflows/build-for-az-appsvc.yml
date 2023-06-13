@@ -25,7 +25,7 @@ jobs:
           python -V
           python -m venv --copies antenv
           source ./antenv/bin/activate
-          python -c "import sys; print sys.prefix; print sys.base_prefix"
+          python -c "import sys; print(sys.prefix); print(sys.base_prefix)"
 
       - name: Install Python dependencies
         run: |
