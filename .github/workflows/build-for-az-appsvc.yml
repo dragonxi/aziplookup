@@ -29,6 +29,7 @@ jobs:
 
       - name: Install Python dependencies
         run: |
+          source ./antenv/bin/activate
           python -c "import sys; print(sys.prefix); print(sys.base_prefix)"
           pip install -r requirements.txt
 
