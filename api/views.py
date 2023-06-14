@@ -1,10 +1,8 @@
 import json
-import logging
 
-from django.shortcuts import render
 from django.http import HttpResponse
 
-from lib import azure_ip
+from . import azure_ip
 
 
 # Create your views here.
