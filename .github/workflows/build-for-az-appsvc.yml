@@ -33,8 +33,24 @@ jobs:
           python -c "import sys; print(sys.prefix); print(sys.base_prefix)"
           pip install -r requirements.txt
 
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Build Next.js App
+        run: |
+          cd nextjs-app
+          npm install
+          npm run build
+
+      - name: Django collect static
+        run: |
+          source ./antenv/bin/activate
+          python manage.py collectstatic
+
       - name: ZIP everything
-        run: zip -r release.zip . -x ".git/*" ".github/*"
+        run: zip -r release.zip . -x ".git/*" ".github/*" "nextjs-app/*"
 
       - name: Upload artifact for deployment
         uses: actions/upload-artifact@v3
